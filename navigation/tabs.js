@@ -32,7 +32,7 @@ const Tabs = () => {
             screenOptions={{
                 tabBarShowLabel: false,
                 tabBarStyle: {
-                    height: 64,
+                    height: 75,
                     backgroundColor: COLORS.gray,
                     borderTopColor: "transparent",
                 }
