@@ -7,10 +7,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { Home, Portfolio, Market, Profile } from "../screens"
 import { COLORS, constants, icons } from "../constants"
 import { TabIcon } from '../components';
+import { connect } from "react-redux";
+import { setTradeModalVisibility } from "../stores/tab/tabActions";
 
 const Tab = createBottomTabNavigator()
 
-const TabBarCustomButton = ({children, onPress}) => {
+const TabBarCustomButton = ({ children, onPress }) => {
     return (
         <TouchableOpacity
             style={{
@@ -25,7 +27,12 @@ const TabBarCustomButton = ({children, onPress}) => {
     )
 }
 
-const Tabs = () => {
+const Tabs = ({ setTradeModalVisibility, isTradeModalvisible }) => {
+
+    function tradeTabButtonOnClickHandler() {
+        setTradeModalVisibility(!isTradeModalvisible);
+        console.log(isTradeModalvisible);
+    }
 
     return (
         <Tab.Navigator
@@ -43,13 +50,15 @@ const Tabs = () => {
                 component={Home}
                 options={{
                     tabBarIcon: ({ focused }) => {
-                        return (
-                            <TabIcon
-                                focused={focused}
-                                icon={icons.home}
-                                label="Home"
-                            />
-                        )
+                        if (!isTradeModalvisible) {
+                            return (
+                                <TabIcon
+                                    focused={focused}
+                                    icon={icons.home}
+                                    label="Home"
+                                />
+                            )
+                        }
                     }
                 }}
             />
@@ -85,7 +94,7 @@ const Tabs = () => {
                     tabBarButton: (props) => (
                         <TabBarCustomButton
                             {...props}
-                            onPress={() => console.log("pressed trade button")}
+                            onPress={() => tradeTabButtonOnClickHandler()}
                         />
                     )
                 }}
@@ -124,4 +133,18 @@ const Tabs = () => {
     )
 }
 
-export default Tabs;
+// export default Tabs;
+
+function mapStateToProps(state) {
+    return {
+        isTradeModalvisible: state.tabReducer.isTradeModalvisible
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        setTradeModalVisibility: (isVisible) => { return dispatch(setTradeModalVisibility(isVisible)) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tabs);

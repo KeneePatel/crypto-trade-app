@@ -3,7 +3,7 @@ import { View } from "react-native";
 
 import { COLORS, SIZES, icons } from "../constants";
 
-export default function MainLayout({ children }) {
+const MainLayout = ({ children }) => {
 	return (
 		<View
 			style={{
@@ -14,3 +14,5 @@ export default function MainLayout({ children }) {
 		</View>
 	);
 }
+
+export default MainLayout;
