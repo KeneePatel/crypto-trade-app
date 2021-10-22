@@ -1,16 +1,14 @@
 import React from "react";
-import {
-    TouchableOpacity,
-} from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 import { Home, Portfolio, Market, Profile } from "../screens"
 import { COLORS, constants, icons } from "../constants"
 import { TabIcon } from '../components';
+
 import { connect } from "react-redux";
 import { setTradeModalVisibility } from "../stores/tab/tabActions";
 
-const Tab = createBottomTabNavigator()
+import { TouchableOpacity } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const TabBarCustomButton = ({ children, onPress }) => {
     return (
