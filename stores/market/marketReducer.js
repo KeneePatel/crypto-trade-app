@@ -14,6 +14,7 @@ const marketReducer = (state = initialState, action) => {
                 loading: true
             }
         case marketActions.GET_HOLDINGS_SUCCESS:
+            // console.log("reducer call success")
             return {
                 ...state,
                 myHoldings: action.payload.myHoldings
@@ -29,6 +30,7 @@ const marketReducer = (state = initialState, action) => {
                 loading: true,
             }
         case marketActions.GET_COIN_MARKET_SUCCESS:
+            // console.log("reducer call success")
             return {
                 ...state,
                 coins: action.payload.coins

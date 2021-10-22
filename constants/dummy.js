@@ -3,14 +3,14 @@ export const holdings = [
 		id: "bitcoin",
 		qty: 888
 	},
-	{
-		id: "ethereum",
-		qty: 188
-	},
-	{
-		id: "dogecoin",
-		qty: 88888
-	}
+	// {
+	// 	id: "ethereum",
+	// 	qty: 188
+	// },
+	// {
+	// 	id: "dogecoin",
+	// 	qty: 88888
+	// }
 ];
 
 export const profile = {

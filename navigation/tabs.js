@@ -27,6 +27,8 @@ const TabBarCustomButton = ({ children, onPress }) => {
 
 const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
 
+    const Tab = createBottomTabNavigator();
+
     function tradeTabButtonOnClickHandler() {
         setTradeModalVisibility(!isTradeModalVisible);
         console.log(isTradeModalVisible);

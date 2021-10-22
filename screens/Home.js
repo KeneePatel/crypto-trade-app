@@ -12,8 +12,12 @@ const Home = ({ getCoinMarket, getHoldings, myHoldings, coins }) => {
 
 	useFocusEffect(
 		React.useCallback(() => {
+			// console.log("Home useFocusEffect");
 			getHoldings(holdings = dummyData.holdings)
 			getCoinMarket()
+
+			// console.log(myHoldings);
+			// console.log(coins);
 		}, [])
 	)
 
