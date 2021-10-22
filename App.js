@@ -11,7 +11,10 @@ import Tabs from "./navigation/tabs";
 
 const Stack = createStackNavigator();
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(
+	rootReducer,
+	applyMiddleware(thunk)
+)
 
 const App = () => {
 	return (
