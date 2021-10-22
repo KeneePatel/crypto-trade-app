@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import rootReducer from "./stores/rootReducer";
 
-
 import Tabs from "./navigation/tabs";
 
 const Stack = createStackNavigator();
