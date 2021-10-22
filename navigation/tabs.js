@@ -37,6 +37,7 @@ const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
     return (
         <Tab.Navigator
             screenOptions={{
+                headerShown: false,
                 tabBarShowLabel: false,
                 tabBarStyle: {
                     height: 75,
