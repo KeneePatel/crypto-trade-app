@@ -7,7 +7,7 @@ import { useFocusEffect } from "@react-navigation/native";
 
 import MainLayout from "./MainLayout";
 import { SIZES, COLORS, FONTS, dummyData, icons } from "../constants";
-import { BalanceInfo, IconTextButton } from "../components";
+import { BalanceInfo, IconTextButton, Chart } from "../components";
 
 const Home = ({ getCoinMarket, getHoldings, myHoldings, coins }) => {
 	useFocusEffect(
@@ -24,6 +24,10 @@ const Home = ({ getCoinMarket, getHoldings, myHoldings, coins }) => {
 	let totalWallet = myHoldings.reduce((a, b) => a + (b.total || 0), 0);
 	let valueChange = myHoldings.reduce((a, b) => a + (b.holding_value_change_7d || 0), 0);
 	let percChange = valueChange / (totalWallet - valueChange) * 100;
+
+	// console.log("--------------------------------------------");
+	// console.log(coins[1]);
+	// console.log("--------------------------------------------");
 
 	function renderWalletInfoSection() {
 		return (
@@ -91,6 +95,12 @@ const Home = ({ getCoinMarket, getHoldings, myHoldings, coins }) => {
 				{renderWalletInfoSection()}
 
 				{/* Chart */}
+				<Chart
+					containerStyle={{
+						marginTop: SIZES.padding * 2
+					}}
+					chartPrices={coins[1]?.sparkline_in_7d?.price}
+				/>
 
 				{/* Top Cryptocurrencies */}
 			</View>

@@ -72,7 +72,7 @@ const BalanceInfo = ({ title, displayAmount, changePct, containerStyle }) => {
 							transform:
 								changePct > 0
 									? [{ rotate: "45deg" }]
-									: [{ rotate: "125deg" }]
+									: [{ rotate: "135deg" }]
 						}}
 					/>
 				)}
