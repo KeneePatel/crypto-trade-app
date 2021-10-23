@@ -136,8 +136,8 @@ const Chart = ({ containerStyle, chartPrices }) => {
 							style={{
 								alignItems: "center",
 								justifyContent: "center",
-								width: 12,
-								height: 12,
+								width: 10,
+								height: 10,
 								borderRadius: 15,
 								backgroundColor: COLORS.white
 							}}
@@ -146,8 +146,8 @@ const Chart = ({ containerStyle, chartPrices }) => {
 								style={{
 									alignItems: "center",
 									justifyContent: "center",
-									width: 7,
-									height: 7,
+									width: 6,
+									height: 6,
 									borderRadius: 15,
 									backgroundColor: COLORS.lightGreen
 								}}

@@ -27,7 +27,7 @@ const MainLayout = ({ children, isTradeModalVisible }) => {
 
 	const modalY = modalAnimatedValue.interpolate({
 		inputRange: [0, 1],
-		outputRange: [SIZES.height, SIZES.height - 280]
+		outputRange: [SIZES.height + 100, SIZES.height - 210]
 	})
 
 	return (
@@ -61,7 +61,8 @@ const MainLayout = ({ children, isTradeModalVisible }) => {
 					top: modalY,
 					width: "100%",
 					padding: SIZES.padding,
-					backgroundColor: COLORS.primary,
+					paddingBottom: SIZES.padding + 200,
+					backgroundColor: COLORS.gray,
 				}}
 			>
 				<IconTextButton
