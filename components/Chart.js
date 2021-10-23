@@ -19,11 +19,11 @@ const Chart = ({ containerStyle, chartPrices }) => {
 
 	let data = chartPrices
 		? chartPrices?.map((item, index) => {
-				return {
-					x: startUnixTimestamp + (index + 1) * 3600,
-					y: item
-				};
-		  })
+			return {
+				x: startUnixTimestamp + (index + 1) * 3600,
+				y: item
+			};
+		})
 		: [];
 
 	let points = monotoneCubicInterpolation({ data, range: 40 });
@@ -54,7 +54,7 @@ const Chart = ({ containerStyle, chartPrices }) => {
 	return (
 		<View style={{ ...containerStyle }}>
 			{/* Y axis Label */}
-			
+
 
 			{/* Chart */}
 			{data.length > 0 && (
