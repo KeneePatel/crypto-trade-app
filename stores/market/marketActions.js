@@ -97,7 +97,7 @@ export function getHoldings(
 							holding_value_change_7d:
 								(item.current_price - price7d) * coin.qty,
 							sparkline_in_7d: {
-								vallue: item.sparkline_in_7d.price.map(
+								value: item.sparkline_in_7d.price.map(
 									(price) => {
 										return price * coin.qty;
 									}

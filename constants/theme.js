@@ -48,7 +48,10 @@ export const SIZES = {
 };
 
 export const FONTS = {
-	largeTitle: { fontFamily: "Roboto-Black", fontSize: SIZES.largeTitle },
+	largeTitle: {
+		fontFamily: "Roboto",
+		fontSize: SIZES.largeTitle
+	},
 	h1: {
 		fontFamily: "Roboto",
 		fontSize: SIZES.h1,

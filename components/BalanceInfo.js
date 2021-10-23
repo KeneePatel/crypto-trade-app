@@ -5,7 +5,7 @@ import { SIZES, COLORS, FONTS, icons } from "../constants";
 
 const BalanceInfo = ({ title, displayAmount, changePct, containerStyle }) => {
 	return (
-		<View containerStyle={{ ...containerStyle }}>
+		<View style={{ ...containerStyle }}>
 			{/* <View style={{ height: 32 }}></View> */}
 			{/* Title */}
 			<Text
