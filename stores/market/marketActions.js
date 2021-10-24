@@ -58,7 +58,7 @@ export function getHoldings(
 			})
 			.join(",");
 		let apiUrl = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=${orderBy}&per_page=${perPage}&page=${page}&sparkline=${sparkline}&price_change_percentage=${priceChangePerc}&ids=${ids}`;
-		console.log(apiUrl);
+		// console.log(apiUrl);
 
 		return axios({
 			url: apiUrl,
@@ -72,7 +72,7 @@ export function getHoldings(
 				// console.log(response)
 				if (response.status == 200) {
 
-                    console.log("got into the main market block------")
+                    // console.log("got into the main market block------")
 
 					//masage data
 					let myHoldings = response.data.map((item) => {
@@ -178,7 +178,7 @@ export function getCoinMarket(
 				// console.log("GetCoinMarket")
 				// console.log(response)
 				if (response.status == 200) {
-                    console.log("got into the main coins block------ \n\n")
+                    // console.log("got into the main coins block------ \n\n")
 					dispatch(getCoinMarketSuccess(response.data));
 				} else {
                     console.log("got into the coins else block------ \n\n")
