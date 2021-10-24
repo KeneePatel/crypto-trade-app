@@ -3,18 +3,22 @@
     "name": "CryptX",
     "slug": "CryptX",
     "version": "1.0.0",
+    "icon": "./assets/app_icon/full_app_icon.png",
     "assetBundlePatterns": [
       "**/*"
     ]
   },
-  "icon": "./assets/app_icon/full_app_icon.png",
   "ios": {
-    "icon": "./assets/app_icon/full_app_icon.png"
+    "icon": "./assets/app_icon/full_app_icon.png",
+    "bundleIdentifier": "com.company.cryptX",
+    "buildNumber": "1.0.0"
   },
   "android": {
+    "package": "com.company.cryptX",
+    "versionCode": 1,
     "adaptiveIcon": {
       "foregroundImage": "./assets/app_icon/foreground_with_text.png",
-      "backgroundColor": "#000000"
+      "backgroundImage": "./assets/app_icon/background.png"
     }
   },
   "name": "CryptX"
