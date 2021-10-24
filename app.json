@@ -1,11 +1,21 @@
 {
   "expo": {
-    "name": "crypto-trade-app",
-    "slug": "crypto-trade-app",
+    "name": "CryptX",
+    "slug": "CryptX",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
   },
-  "name": "crypto-trade-app"
+  "icon": "./assets/app_icon/full_app_icon.png",
+  "ios": {
+    "icon": "./assets/app_icon/full_app_icon.png"
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/app_icon/foreground_with_text.png",
+      "backgroundColor": "#000000"
+    }
+  },
+  "name": "CryptX"
 }
