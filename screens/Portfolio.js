@@ -10,11 +10,14 @@ import { BalanceInfo, Chart } from "../components";
 import { SIZES, COLORS, FONTS, dummyData, icons } from "../constants";
 
 const Portfolio = ({ getHoldings, myHoldings }) => {
+
+	const [selectedCoin, setSelectedCoin] = React.useState(null)
+
 	useFocusEffect(
 		React.useCallback(() => {
 			// console.log("Home useFocusEffect");
 			getHoldings((holdings = dummyData.holdings));
-			
+
 			// console.log(myHoldings[0]?.sparkline_in_7d);
 		}, [])
 	);
@@ -74,7 +77,7 @@ const Portfolio = ({ getHoldings, myHoldings }) => {
 					containerStyle={{
 						marginTop: SIZES.radius,
 					}}
-					chartPrices={myHoldings[0]?.sparkline_in_7d?.value}
+					chartPrices={selectedCoin ? selectedCoin.sparkline_in_7d.value : myHoldings[0]?.sparkline_in_7d?.value}
 				/>
 
 				{/* Your Assets */}
@@ -88,10 +91,116 @@ const Portfolio = ({ getHoldings, myHoldings }) => {
 					ListHeaderComponent={
 						<View>
 							{/* Section Header */}
+							<Text style={{ ...FONTS.h2, color: COLORS.white }}>Your Assets</Text>
 
 							{/* Header Label */}
+							<View
+								style={{
+									flexDirection: 'row',
+									marginTop: SIZES.radius
+								}}
+							>
+								<Text style={{ flex: 1, color: COLORS.lightGray3 }}>Asset</Text>
+								<Text style={{ flex: 1, color: COLORS.lightGray3, textAlign: 'right' }}>Price</Text>
+								<Text style={{ flex: 1, color: COLORS.lightGray3, textAlign: 'right' }}>Holdings</Text>
+							</View>
 						</View>
 					}
+					renderItem={({ item }) => {
+						let priceColor = item.price_change_percentage_7d_in_currency == 0
+							? COLORS.lightGray3 : item.price_change_percentage_7d_in_currency > 0
+								? COLORS.lightGreen : COLORS.red
+
+						return (
+							<TouchableOpacity
+								style={{
+									flexDirection: 'row',
+									height: 55
+								}}
+								onPress={() => setSelectedCoin(item)}
+							>
+
+								{/* Asset */}
+								<View
+									style={{
+										flex: 1,
+										flexDirection: 'row',
+										alignItems: 'center'
+									}}
+								>
+									<Image
+										source={{ uri: item.image }}
+										style={{
+											width: 20,
+											height: 20
+										}}
+									/>
+									<Text style={{ marginLeft: SIZES.radius, color: COLORS.white, ...FONTS.h4 }}>{item.name}</Text>
+								</View>
+
+
+								{/* price */}
+								<View
+									style={{
+										flex: 1,
+										justifyContent: 'center'
+									}}
+								>
+									<Text style={{ textAlign: 'right', color: COLORS.white, ...FONTS.h4, lineHeight: 15 }}>$ {item.current_price.toLocaleString()}</Text>
+									<View
+										style={{
+											flexDirection: 'row',
+											alignItems: 'center',
+											justifyContent: 'flex-end'
+										}}
+									>
+										{
+											item.price_change_percentage_7d_in_currency != 0 &&
+											<Image
+												source={icons.upArrow}
+												style={{
+													height: 10,
+													width: 10,
+													tintColor: priceColor,
+													transform: (item.price_change_percentage_7d_in_currency > 0) ? [{ rotate: '45deg' }] : [{ rotate: '125deg' }]
+												}}
+											/>
+										}
+										<Text style={{ marginLeft: 5, color: priceColor, ...FONTS.body5, lineHeight: 15 }}>{item.price_change_percentage_7d_in_currency.toFixed(2)}%</Text>
+									</View>
+								</View>
+
+								{/* Holdings */}
+								<View
+									style={{
+										flex: 1,
+										justifyContent: 'center'
+									}}
+								>
+									<Text
+										style={{
+											textAlign: 'right',
+											color: COLORS.white,
+											...FONTS.h4,
+											lineHeight: 15
+										}}
+									>
+										$ {item.total.toFixed(6).toLocaleString()}
+									</Text>
+									<Text
+										style={{
+											textAlign: 'right',
+											color: COLORS.lightGray3,
+											...FONTS.body5,
+											lineHeight: 15,
+										}}
+									>
+										{item.qty} {item.symbol.toUpperCase()}
+									</Text>
+								</View>
+							</TouchableOpacity>
+						)
+					}}
 				/>
 			</View>
 		</MainLayout>
