@@ -8,6 +8,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./stores/rootReducer";
 
 import Tabs from "./navigation/tabs";
+import Login from "./screens/Login";
 
 const Stack = createStackNavigator();
 
@@ -26,7 +27,7 @@ const App = () => {
 					}}
 					initialRouteName={"MainLayout"}
 				>
-					<Stack.Screen name="MainLayout" component={Tabs} />
+					<Stack.Screen name="MainLayout" component={Login} />
 				</Stack.Navigator>
 			</NavigationContainer>
 		</Provider>

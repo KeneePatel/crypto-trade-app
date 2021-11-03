@@ -4,6 +4,7 @@ import BalanceInfo from "./BalanceInfo";
 import Chart from "./Chart";
 import HeaderBar from "./HeaderBar";
 import TextButton from "./TextButton";
+import Input from "./Input";
 
 export {
     Chart,
@@ -11,5 +12,6 @@ export {
     IconTextButton,
     BalanceInfo,
     HeaderBar,
-    TextButton
+    TextButton,
+    Input
 };
