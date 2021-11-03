@@ -20,7 +20,7 @@ export default function Input({ icon, hideText }) {
 					resizeMode="contain"
 					style={styles.arrow}
 				/>
-				<TextInput style={styles.input} />
+				<TextInput style={styles.input} secureTextEntry={hideText}/>
 			</View>
 		</View>
 	);
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
 		borderColor: "#4BEE7090"
 	},
 	icon: {
-		height: 35,
-		width: 35,
+		height: 26,
+		width: 26,
 		tintColor: "#ddd"
 	},
 	arrow: {

@@ -9,6 +9,7 @@ import {
 
 import { COLORS, constants, icons } from "../constants";
 import { Input } from "../components";
+import { TouchableNativeFeedback, TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Login() {
 	return (
@@ -38,9 +39,29 @@ export default function Login() {
 						<View style={styles.whitebar}></View>
 					</View>
 				</View>
-				<View style={{marginTop: "15%"}}>
-					<Input icon={icons.profile}/>
-					<Input icon={icons.key}/>
+
+				{/* Inputs */}
+				<View style={{marginTop: "12%"}}>
+					<Input icon={icons.mail}/>
+					<Input icon={icons.key} hideText={true}/>
+				</View>
+
+				{/* Buttons */}
+				<View style={styles.buttonContainer}>
+					<TouchableNativeFeedback
+						background={TouchableNativeFeedback.Ripple(COLORS.primary)}
+					>
+						<View style={styles.button}>
+							<Text style={styles.buttontext}>Login</Text>
+						</View>
+					</TouchableNativeFeedback>
+					<TouchableNativeFeedback
+						background={TouchableNativeFeedback.Ripple(COLORS.primary)}
+					>
+						<View style={styles.outLineButton}>
+							<Text style={styles.outLineButtontext}>Sign Up</Text>
+						</View>
+					</TouchableNativeFeedback>
 				</View>
 			</KeyboardAvoidingView>
 		</View>
@@ -52,11 +73,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: "flex-end",
 		backgroundColor: "rgba(0,0,0,0.3)"
-	},
-	logo: {
-		width: "15%",
-		height: "15%",
-		margin: "5%"
 	},
 	container: {
 		flex: 1,
@@ -70,7 +86,7 @@ const styles = StyleSheet.create({
 		// backgroundColor: "#444"
 	},
 	appcontainer: {
-		marginTop: "15%",
+		marginTop: "10%",
 		display: "flex",
 		flexDirection: "row",
 		alignItems: "center"
@@ -83,13 +99,18 @@ const styles = StyleSheet.create({
 		marginTop: "4%",
 		marginLeft: 55
 	},
+	buttonContainer: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center"
+	},
 	bar: {
-		height: 3,
+		height: 2.5,
 		width: 30,
 		backgroundColor: COLORS.lightGreen
 	},
 	whitebar: {
-		height: 5,
+		height: 4,
 		width: 120,
 		backgroundColor: COLORS.white
 	},
@@ -104,5 +125,37 @@ const styles = StyleSheet.create({
 		color: COLORS.white,
 		letterSpacing: 1.3,
 		fontWeight: "600"
+	},
+	button: {
+		marginTop: "12%",
+		height: 50,
+		width: 300,
+		backgroundColor: COLORS.lightGreen,
+		borderRadius: 10,
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	outLineButton: {
+		marginTop: "5%",
+		height: 50,
+		width: 300,
+		backgroundColor: COLORS.black,
+		borderRadius: 10,
+		alignItems: "center",
+		justifyContent: "center",
+		borderWidth: 1.5,
+		borderColor: COLORS.lightGreen
+	},
+	buttontext: {
+		color: COLORS.black,
+		fontSize: 18,
+		fontWeight: "bold",
+		letterSpacing: 1.1
+	},
+	outLineButtontext: {
+		color: COLORS.lightGreen,
+		fontSize: 18,
+		fontWeight: "bold",
+		letterSpacing: 1.1
 	}
 });

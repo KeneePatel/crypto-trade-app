@@ -11,6 +11,7 @@ const verified = require("../assets/icons/verified.png");
 const withdraw = require("../assets/icons/withdraw.png");
 const lock = require("../assets/icons/lock.png");
 const key = require("../assets/icons/key.png");
+const mail = require("../assets/icons/mail.png");
 
 export default {
 	briefcase,
@@ -25,5 +26,6 @@ export default {
 	verified,
 	withdraw,
 	lock,
-	key
+	key,
+	mail
 };
