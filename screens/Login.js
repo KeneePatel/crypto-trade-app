@@ -52,6 +52,7 @@ export default function Login() {
 						background={TouchableNativeFeedback.Ripple(COLORS.primary)}
 					>
 						<View style={styles.button}>
+							<View style={styles.blackbar}/>
 							<Text style={styles.buttontext}>Login</Text>
 						</View>
 					</TouchableNativeFeedback>
@@ -59,6 +60,7 @@ export default function Login() {
 						background={TouchableNativeFeedback.Ripple(COLORS.primary)}
 					>
 						<View style={styles.outLineButton}>
+							<View style={styles.greenbar}/>
 							<Text style={styles.outLineButtontext}>Sign Up</Text>
 						</View>
 					</TouchableNativeFeedback>
@@ -114,6 +116,20 @@ const styles = StyleSheet.create({
 		width: 120,
 		backgroundColor: COLORS.white
 	},
+	blackbar: {
+		height: 3,
+		width: 120,
+		marginRight: "8%",
+		marginLeft: "12%",
+		backgroundColor: COLORS.black
+	},
+	greenbar: {
+		height: 3,
+		width: 120,
+		marginRight: "8%",
+		marginLeft: "12%",
+		backgroundColor: COLORS.lightGreen
+	},
 	appname: {
 		marginLeft: "5%",
 		fontSize: 16,
@@ -127,22 +143,22 @@ const styles = StyleSheet.create({
 		fontWeight: "600"
 	},
 	button: {
+		flexDirection: "row",
 		marginTop: "12%",
 		height: 50,
 		width: 300,
 		backgroundColor: COLORS.lightGreen,
 		borderRadius: 10,
 		alignItems: "center",
-		justifyContent: "center",
 	},
 	outLineButton: {
+		flexDirection: "row",
 		marginTop: "5%",
 		height: 50,
 		width: 300,
 		backgroundColor: COLORS.black,
 		borderRadius: 10,
 		alignItems: "center",
-		justifyContent: "center",
 		borderWidth: 1.5,
 		borderColor: COLORS.lightGreen
 	},
