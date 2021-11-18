@@ -6,10 +6,13 @@ import {
 	ScrollView,
 	Image,
 	Switch,
+	StyleSheet,
 	Settings
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { TouchableNativeFeedback } from "react-native-gesture-handler";
 
-import { auth } from "../firebase";
+import { auth, handleLogout } from "../firebase";
 import { onAuthStateChanged } from "@firebase/auth";
 
 import MainLayout from "./MainLayout";
@@ -113,6 +116,7 @@ const Profile = () => {
 	const [email, setEmail] = React.useState("");
 	const [uid, setUid] = React.useState("");
 	const [emailVerified, setEmailVerified] = React.useState(false);
+	const navigation = useNavigation();
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
@@ -210,6 +214,34 @@ const Profile = () => {
 							</Text>
 						</View>
 					</View>
+					<TouchableNativeFeedback
+						onPress={() => {
+							handleLogout();
+							navigation.navigate("login");
+						}}
+						background={TouchableNativeFeedback.Ripple(
+							COLORS.primary
+						)}
+					>
+						<View style={{
+							marginTop: SIZES.base,
+							display: "flex",
+							alignItems: "center",
+							justifyContent: "center",
+							width: 70,
+							height: 30,
+							borderRadius: 10,
+							backgroundColor: COLORS.lightGreen
+						}}>
+							<Text style={{
+
+								color: COLORS.primary,
+								...FONTS.h4
+							}}>
+								Log out
+							</Text>
+						</View>
+					</TouchableNativeFeedback>
 
 					{/* APP */}
 					<SectionTitle title="APP" />

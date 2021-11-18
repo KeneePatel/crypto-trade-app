@@ -1,5 +1,5 @@
 import { initializeApp, getApp, getApps } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyAfKrFPiVdm31EU6AFJH31eWqAYrSXPrX0",
@@ -55,4 +55,15 @@ function handleLogin(email, password) {
 		});
 }
 
-export { auth, handleSignup, handleLogin };
+function handleLogout(email, password) {
+	signOut(auth).then(() => {
+		console.log("-------------------------");
+		console.log("Sign-out successful.")
+		console.log("-------------------------");
+	}).catch((error) => {
+		console.log("sign out unsuccessfull");
+		console.log(error.message);
+	});
+}
+
+export { auth, handleSignup, handleLogin, handleLogout };
