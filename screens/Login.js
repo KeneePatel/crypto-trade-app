@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	KeyboardAvoidingView,
 	StyleSheet,
@@ -6,12 +6,31 @@ import {
 	View,
 	Image
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-import { COLORS, constants, icons } from "../constants";
+import { auth, handleSignup, handleLogin } from "../firebase";
+import { onAuthStateChanged } from "@firebase/auth";
+
+import { COLORS, icons } from "../constants";
+import { TouchableNativeFeedback } from "react-native-gesture-handler";
 import { Input } from "../components";
-import { TouchableNativeFeedback, TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Login() {
+	const [email, setEmail] = React.useState("");
+	const [password, setPassword] = React.useState("");
+	const navigation = useNavigation();
+
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				console.log("User is signed in: ", user.email);
+				navigation.navigate("tabs");
+			} else {
+				console.log("User is signed out ");
+			}
+		});
+	}, []);
+
 	return (
 		<View style={{ flex: 1, backgroundColor: "white" }}>
 			{/* Background */}
@@ -41,27 +60,46 @@ export default function Login() {
 				</View>
 
 				{/* Inputs */}
-				<View style={{marginTop: "12%"}}>
-					<Input icon={icons.mail}/>
-					<Input icon={icons.key} hideText={true}/>
+				<View style={{ marginTop: "12%" }}>
+					<Input
+						icon={icons.mail}
+						placeholder="Email"
+						value={email}
+						onChangeText={(text) => setEmail(text)}
+					/>
+					<Input
+						icon={icons.key}
+						placeholder="Password"
+						secureTextEntry={true}
+						value={password}
+						onChangeText={(text) => setPassword(text)}
+					/>
 				</View>
 
 				{/* Buttons */}
 				<View style={styles.buttonContainer}>
 					<TouchableNativeFeedback
-						background={TouchableNativeFeedback.Ripple(COLORS.primary)}
+						onPress={() => handleLogin(email, password)}
+						background={TouchableNativeFeedback.Ripple(
+							COLORS.primary
+						)}
 					>
 						<View style={styles.button}>
-							<View style={styles.blackbar}/>
+							<View style={styles.blackbar} />
 							<Text style={styles.buttontext}>Login</Text>
 						</View>
 					</TouchableNativeFeedback>
 					<TouchableNativeFeedback
-						background={TouchableNativeFeedback.Ripple(COLORS.primary)}
+						onPress={() => handleSignup(email, password)}
+						background={TouchableNativeFeedback.Ripple(
+							COLORS.primary
+						)}
 					>
 						<View style={styles.outLineButton}>
-							<View style={styles.greenbar}/>
-							<Text style={styles.outLineButtontext}>Sign Up</Text>
+							<View style={styles.greenbar} />
+							<Text style={styles.outLineButtontext}>
+								Sign Up
+							</Text>
 						</View>
 					</TouchableNativeFeedback>
 				</View>
@@ -79,12 +117,12 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		marginHorizontal: "10%",
-		marginVertical: "16%",
+		marginVertical: "16%"
 		// backgroundColor: "#333"
 	},
 	subcontainer: {
 		marginHorizontal: "12%",
-		marginTop: "25%",
+		marginTop: "25%"
 		// backgroundColor: "#444"
 	},
 	appcontainer: {
@@ -149,7 +187,7 @@ const styles = StyleSheet.create({
 		width: 300,
 		backgroundColor: COLORS.lightGreen,
 		borderRadius: 10,
-		alignItems: "center",
+		alignItems: "center"
 	},
 	outLineButton: {
 		flexDirection: "row",

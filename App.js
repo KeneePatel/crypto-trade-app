@@ -12,6 +12,9 @@ import Login from "./screens/Login";
 
 const Stack = createStackNavigator();
 
+import { LogBox } from "react-native";
+LogBox.ignoreLogs(['Warning: AsyncStorage has been extracted from react-native core']);
+
 const store = createStore(
 	rootReducer,
 	applyMiddleware(thunk)
@@ -25,9 +28,11 @@ const App = () => {
 					screenOptions={{
 						headerShown: false
 					}}
-					initialRouteName={"MainLayout"}
+					initialRouteName={"login"}
 				>
-					<Stack.Screen name="MainLayout" component={Login} />
+					{/* <Stack.Screen name="loading" component={Loading} /> */}
+					<Stack.Screen name="login" component={Login} />
+					<Stack.Screen name="tabs" component={Tabs} />
 				</Stack.Navigator>
 			</NavigationContainer>
 		</Provider>

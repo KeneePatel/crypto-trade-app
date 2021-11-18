@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	View,
 	Text,
@@ -8,6 +8,9 @@ import {
 	Switch,
 	Settings
 } from "react-native";
+
+import { auth } from "../firebase";
+import { onAuthStateChanged } from "@firebase/auth";
 
 import MainLayout from "./MainLayout";
 import { HeaderBar } from "../components";
@@ -107,6 +110,32 @@ const Setting = ({ title, value, type, onPress }) => {
 };
 
 const Profile = () => {
+	const [email, setEmail] = React.useState("");
+	const [uid, setUid] = React.useState("");
+	const [emailVerified, setEmailVerified] = React.useState(false);
+
+	useEffect(() => {
+		onAuthStateChanged(auth, (user) => {
+			if (user) {
+				console.log("----------------------------");
+				// console.log(user);
+				console.log("----------------------------");
+				console.log("User signed in is:", user.email);
+
+				setEmail(user.email);
+				setUid(user.uid);
+				setEmailVerified(user.emailVerified);
+
+				console.log("----------------------------");
+				console.log("email: ", email);
+				console.log("uid: ", uid);
+				console.log("emailVerified: ", emailVerified);
+				console.log("----------------------------");
+			} else {
+				console.log("User is signed out ");
+			}
+		});
+	}, []);
 
 	const [faceId, setFaceId] = React.useState(true);
 
@@ -139,15 +168,15 @@ const Profile = () => {
 									...FONTS.h3
 								}}
 							>
-								{dummyData.profile.email}
+								{email}
 							</Text>
 							<Text
 								style={{
 									color: COLORS.lightGray3,
-									...FONTS.h3
+									...FONTS.h5
 								}}
 							>
-								ID: {dummyData.profile.id}
+								ID: {uid}
 							</Text>
 						</View>
 
@@ -162,17 +191,22 @@ const Profile = () => {
 								source={icons.verified}
 								style={{
 									height: 25,
-									width: 25
+									width: 25,
+									tintColor: emailVerified
+										? COLORS.lightGreen
+										: COLORS.red
 								}}
 							/>
 							<Text
 								style={{
 									marginLeft: SIZES.base,
-									color: COLORS.lightGreen,
+									color: emailVerified
+										? COLORS.lightGreen
+										: COLORS.red,
 									...FONTS.body4
 								}}
 							>
-								Verified
+								{emailVerified ? "verified" : "unverified"}
 							</Text>
 						</View>
 					</View>

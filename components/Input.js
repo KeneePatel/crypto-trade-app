@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { icons } from "../constants";
 
-export default function Input({ icon, hideText }) {
+export default function Input({ icon, placeholder, value, onChangeText, secureTextEntry }) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.child}>
@@ -20,7 +20,14 @@ export default function Input({ icon, hideText }) {
 					resizeMode="contain"
 					style={styles.arrow}
 				/>
-				<TextInput style={styles.input} secureTextEntry={hideText}/>
+				<TextInput
+					value={value}
+					onChangeText={onChangeText}
+					placeholder={placeholder}
+					placeholderTextColor="#dddddd88"
+					style={styles.input}
+					secureTextEntry={secureTextEntry}
+				/>
 			</View>
 		</View>
 	);
@@ -61,6 +68,6 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: "100%",
 		fontSize: 18,
-		color: "white"
+		color: "#ddd"
 	}
 });
